@@ -61,6 +61,12 @@ build CMakeFiles/BigReal.dir/BigReal.cpp.obj: CXX_COMPILER__BigReal_Debug D$:/St
   OBJECT_DIR = CMakeFiles\BigReal.dir
   OBJECT_FILE_DIR = CMakeFiles\BigReal.dir
 
+build CMakeFiles/BigReal.dir/BigDecimalIntClass.cpp.obj: CXX_COMPILER__BigReal_Debug D$:/Study/Assignment$ 2$ -$ OOP/BigReal/BigDecimalIntClass.cpp || cmake_object_order_depends_target_BigReal
+  DEP_FILE = CMakeFiles\BigReal.dir\BigDecimalIntClass.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\BigReal.dir
+  OBJECT_FILE_DIR = CMakeFiles\BigReal.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target BigReal
@@ -69,7 +75,7 @@ build CMakeFiles/BigReal.dir/BigReal.cpp.obj: CXX_COMPILER__BigReal_Debug D$:/St
 #############################################
 # Link the executable BigReal.exe
 
-build BigReal.exe: CXX_EXECUTABLE_LINKER__BigReal_Debug CMakeFiles/BigReal.dir/main.cpp.obj CMakeFiles/BigReal.dir/BigReal.cpp.obj
+build BigReal.exe: CXX_EXECUTABLE_LINKER__BigReal_Debug CMakeFiles/BigReal.dir/main.cpp.obj CMakeFiles/BigReal.dir/BigReal.cpp.obj CMakeFiles/BigReal.dir/BigDecimalIntClass.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\BigReal.dir

@@ -3,4 +3,4 @@ project(BigReal)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(BigReal main.cpp BigReal.h BigReal.cpp)
+add_executable(BigReal main.cpp BigReal.h BigReal.cpp BigDecimalIntClass.h BigDecimalIntClass.cpp)

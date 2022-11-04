@@ -7,31 +7,37 @@
 #include "BigDecimalIntClass.h"
 
 
+
 #include <bits/stdc++.h>
 using namespace std;
 class BigReal
 {
 private:
 
-    string Total,fractional_part,integer_part;
+    string *Total,*fractional_part,*integer_part;
+    int* R_sign = new int{1};
     bool CheckReal();
+    string addition(string first, string second);
+    BigReal substraction();
 public:
 
     BigReal (string BR="0.0"); // Default constructor
+    BigReal (double BR);
     BigReal (BigDecimalInt& bigInteger);
-//    BigReal (const BigReal& other); // Copy constructor
-//    BigReal (BigReal&& other); // Move constructor
-//    BigReal& operator= (BigReal& other); // Assignment operator
-//    BigReal& operator= (BigReal&& other); // Move assignment
-//    BigReal operator+ (BigReal& other);
+    BigReal (const BigReal& other); // Copy constructor
+    BigReal (BigReal&& other); // Move constructor
+    BigReal& operator= (BigReal& other); // Assignment operator
+    BigReal& operator= (BigReal&& other); // Move assignment
+    ~BigReal();
+    BigReal operator+ (BigReal& other);
 //    BigReal operator- (BigReal& other);
-//    bool operator< (BigReal anotherReal);
-//    bool operator> (BigReal anotherReal);
-//    bool operator== (BigReal anotherReal);
-//    int size();
-//    int sign();
-//    friend ostream& operator << (ostream& out, BigReal num);
-//    friend istream& operator >> (istream& out, BigReal num);
+    bool operator< (BigReal& anotherReal);
+    bool operator> (BigReal& anotherReal);
+    bool operator== (BigReal anotherReal);
+    int size();
+    int sign();
+    friend ostream& operator << (ostream& out, BigReal& num);
+    friend istream& operator >> (istream& out, BigReal& num);
 
 };
 #endif //BIGREAL_BIGREAL_H
