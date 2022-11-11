@@ -1,18 +1,23 @@
 #include <iostream>
 #include <vector>
 #include "BigReal.h"
+//#include "BigReal.cpp"
 
 
 
 
 
-BigReal test(){
-    BigReal b;
-    return b;};
+
+
+//BigReal test(){
+//    BigReal b;
+//    return b;};
 
 int main() {
-    BigReal a("11.91");
-    BigReal b("11.900000000000000000000000000000000");
-
+    BigReal a("-2.99");
+    BigReal b("-2.99");
+    BigReal z ;
+    z = a-b;
+    cout << z;
     return 0;
 }

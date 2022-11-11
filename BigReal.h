@@ -15,10 +15,10 @@ class BigReal
 private:
 
     string *Total,*fractional_part,*integer_part;
-    int* R_sign = new int{1};
+    int* R_sign;
     bool CheckReal();
-    string addition(string first, string second);
-    BigReal substraction();
+    string addition(string first, string second,BigReal& F);
+    BigReal substraction(BigReal &first, BigReal &seccond);
 public:
 
     BigReal (string BR="0.0"); // Default constructor
@@ -30,7 +30,7 @@ public:
     BigReal& operator= (BigReal&& other); // Move assignment
     ~BigReal();
     BigReal operator+ (BigReal& other);
-//    BigReal operator- (BigReal& other);
+    BigReal operator- (BigReal& other);
     bool operator< (BigReal& anotherReal);
     bool operator> (BigReal& anotherReal);
     bool operator== (BigReal anotherReal);

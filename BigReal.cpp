@@ -17,9 +17,10 @@ BigReal::BigReal(string BR )
 
         if(BR[0] == '-')
         {
-            delete R_sign;
             R_sign = new int {-1};
         }
+        else R_sign = new int {1};
+
 
         string intprt,frcprt;
         int i = 0;
@@ -47,9 +48,9 @@ BigReal::BigReal(double BR)
     Total = new string (tmp);
     if(tmp[0] == '-')
     {
-        delete R_sign;
         R_sign = new int {-1};
     }
+    else R_sign = new int {1};
 
     string intprt,frcprt;
     int i = 0;
@@ -75,7 +76,7 @@ bool BigReal::CheckReal()
 
 BigReal::BigReal (BigDecimalInt& bigInteger)
 {
-    delete R_sign;
+
     R_sign = new int {bigInteger.sign()};
     integer_part = new string (bigInteger.getNumber());
     fractional_part = new string("0");
@@ -91,7 +92,6 @@ BigReal::~BigReal()
 }
 BigReal::BigReal(const BigReal &other)
 {
-    delete R_sign;
     R_sign = new int {*other.R_sign};
     integer_part = new string(*other.integer_part);
     fractional_part = new string (*other.fractional_part);
@@ -101,12 +101,6 @@ BigReal::BigReal(const BigReal &other)
 
 BigReal::BigReal(BigReal&& other)
 {
-
-    delete integer_part;
-    delete fractional_part;
-    delete Total;
-    delete R_sign;
-
     integer_part = other.integer_part;
     fractional_part = other.fractional_part;
     Total = other.Total;
@@ -124,7 +118,6 @@ BigReal& BigReal::operator=(BigReal &other)
             integer_part = new string(*other.integer_part);
             fractional_part = new string (*other.fractional_part);
             Total = new string (*other.Total);
-            delete R_sign;
             R_sign = new int (*other.R_sign);
             return *this;
 
@@ -134,7 +127,7 @@ BigReal& BigReal::operator=(BigReal &other)
 BigReal &BigReal::operator=(BigReal &&other)
         {
 
-            delete R_sign;
+
             integer_part = other.integer_part;
             fractional_part = other.fractional_part;
             Total = other.Total;
@@ -143,6 +136,7 @@ BigReal &BigReal::operator=(BigReal &&other)
             other.Total = nullptr;
             other.fractional_part = nullptr;
             other.integer_part = nullptr;
+            other.R_sign = nullptr;
             return *this;
             cout<<"move assignment"<<new_line;
         }
@@ -279,22 +273,115 @@ bool BigReal::operator==(BigReal anotherReal)
     }
 }
 
-BigReal BigReal::operator+(BigReal &other)
-{   BigReal Final;
-    BigDecimalInt A(*this->integer_part) , B(*other.integer_part);
-    delete Final.integer_part ;
+BigReal BigReal::operator-(BigReal &other)
+{
 
-    if((Total[0] == "-") && (other.Total[0] == "-"))
-    {}
-    if((Total[0] == "-") && (other.Total[0] == "+"))
-    {}
-    if((Total[0] == "+") && (other.Total[0] == "-"))
-    {}
-    if((Total[0] == "+") && (other.Total[0] == "+"))
+    BigReal Final;
+    BigDecimalInt A(*this->integer_part) , B(*other.integer_part);
+    string frc1 , frc2;
+    frc1 = *this->fractional_part;
+    frc2 = *other.fractional_part;
+    delete Final.integer_part ;
+    delete Final.fractional_part ;
+    delete Final.Total;
+    delete Final.R_sign;
+    if((this ->sign() == -1) && (other.sign() == -1))
     {
-        Final.integer_part = new string{(A + B).getNumber()};
-        return Final;
+            if(*this > other)
+            {
+                Final = substraction(*this,other);
+                delete Final.R_sign;
+                Final.R_sign = new int{1};
+            }
+            else
+            {
+                Final = substraction(*this,other);
+                delete Final.R_sign;
+                Final.R_sign = new int{-1};
+            }
+
     }
+    else if((this ->sign() == -1) && (other.sign() == 1))
+    {
+        Final.integer_part = new string{(A-B).getNumber()};
+        Final.fractional_part = new string{(addition(frc1,frc2,Final))};
+        Final.Total = new string {(*Final.integer_part) +'.'+ (*Final.fractional_part)};
+        Final.R_sign = new int{-1};
+    }
+    else if((this ->sign() == 1) && (other.sign() == -1))
+    {
+        Final.integer_part = new string{(A-B).getNumber()};
+        Final.fractional_part = new string{(addition(frc1,frc2,Final))};
+        Final.Total = new string {(*Final.integer_part) +'.'+ (*Final.fractional_part)};
+        Final.R_sign = new int{1};
+    }
+    else if((this ->sign() == 1) && (other.sign() == 1))
+    {
+        if(*this > other)
+        {
+            Final = substraction(*this,other);
+            delete Final.R_sign;
+            Final.R_sign = new int{1};
+        }
+        else
+        {
+            Final = substraction(other , *this);
+            delete Final.R_sign;
+            Final.R_sign = new int{1};
+        }
+    }
+    return Final;
+
+}
+BigReal BigReal::operator+(BigReal &other)
+{
+
+    BigReal Final;
+    BigDecimalInt A(*this->integer_part) , B(*other.integer_part);
+    string frc1 , frc2;
+    frc1 = *this->fractional_part;
+    frc2 = *other.fractional_part;
+    delete Final.integer_part ;
+    delete Final.fractional_part ;
+    delete Final.Total;
+    delete Final.R_sign;
+
+    if((this ->sign() == -1) && (other.sign() == -1))
+    {
+        Final.integer_part = new string{(A+B).getNumber()};
+        Final.fractional_part = new string{(addition(frc1,frc2,Final))};
+        Final.Total = new string {(*Final.integer_part) +'.'+ (*Final.fractional_part)};
+        Final.R_sign = new int{-1};
+    }
+    else if((this ->sign() == -1) && (other.sign() == 1))
+    {
+
+        if(*this > other)
+        {
+            Final = substraction(*this,other);
+            delete Final.R_sign;
+            Final.R_sign = new int{-1};
+        }
+        else
+        {
+            Final = substraction(other , *this);
+            delete Final.R_sign;
+            Final.R_sign = new int{1};
+        }
+    }
+    else if((this ->sign() == 1) && (other.sign() == -1))
+    {}
+    else if((this ->sign() == 1) && (other.sign() == 1))
+    {
+
+        Final.integer_part = new string{(A+B).getNumber()};
+        Final.fractional_part = new string{(addition(frc1,frc2,Final))};
+        Final.Total = new string {(*Final.integer_part) +'.'+ (*Final.fractional_part)};
+        Final.R_sign = new int{1};
+
+
+    }
+    return Final;
 }
 int BigReal::sign()
 {
@@ -307,9 +394,11 @@ int BigReal::size()
 }
 
 ostream& operator << (ostream& out, BigReal& b){
-    out << *b.Total;
+    if(b.sign() == -1){out <<'-'<<*b.Total;}
+     else out <<*b.Total;
     return out ;
 }
+
 istream& operator >> (istream& out, BigReal& b){
     string tmp_str;
     out >> tmp_str;
@@ -318,8 +407,9 @@ istream& operator >> (istream& out, BigReal& b){
     return out;
 }
 
-string BigReal::addition(string first, string second)
-{   string total;
+string BigReal::addition(string first, string second,BigReal& f)
+{
+    string total;
     int sum = 0;
     int maxlen = max(first.size(),second.size());
     int minlen = min(first.size(),second.size());
@@ -328,7 +418,15 @@ string BigReal::addition(string first, string second)
     }
     for (int i = 0; i < maxlen; i++) {
         sum += ((first[first.size() - 1 - i] - '0') + (second[second.size() - 1 - i] - '0'));
-        if(i == maxlen-1)
+        if(i == maxlen-1 && sum > 9)
+        {
+            int carry = sum % 10;
+            sum /= 10;
+            total += to_string(carry);
+            *f.integer_part = (BigDecimalInt{"1"} + BigDecimalInt(*f.integer_part)).getNumber();
+
+        }
+        else if(i == maxlen-1)
         {total += to_string(sum);
         }
         else{int carry = sum % 10;
@@ -336,5 +434,40 @@ string BigReal::addition(string first, string second)
             total += to_string(carry);}
 
     }
+    std::reverse(total.begin(), total.end());
     return total;
+}
+
+BigReal BigReal::substraction(BigReal &first, BigReal& seccond)
+{
+
+    BigReal total;
+    string tmp_str;
+    delete total.integer_part ;
+    delete total.fractional_part ;
+    delete total.Total;
+    delete total.R_sign;
+    int frc_max_len = max(first.fractional_part->size() , seccond.fractional_part->size() );
+    int frc_min_len = min(first.fractional_part->size() , seccond.fractional_part->size() );
+    for (int i = frc_min_len; i < frc_max_len; ++i) {
+        (first.fractional_part->size() > seccond.fractional_part->size() ? *seccond.fractional_part : *first.fractional_part) +='0';
+    }
+
+    BigDecimalInt A(*first.integer_part + *first.fractional_part);
+    BigDecimalInt B(*seccond.integer_part + *seccond.fractional_part);
+    BigDecimalInt tmp((A-B).getNumber());
+    tmp_str="";
+    for (int i = tmp.getNumber().size() - frc_max_len; i <= tmp.getNumber().size(); ++i) {
+        tmp_str += tmp.getNumber()[i];
+    }
+    total.fractional_part = new string{tmp_str};
+    tmp_str = "";
+    for (int i = 0 ; i < tmp.getNumber().size() - frc_max_len; ++i) {
+        tmp_str += tmp.getNumber()[i];
+    }
+    total.integer_part = new string {tmp_str};
+    total.Total = new string {*total.integer_part + '.'+*total.fractional_part};
+    total.R_sign = new int{1};
+    return total;
+    
 }
