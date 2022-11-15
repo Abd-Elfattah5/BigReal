@@ -13,7 +13,11 @@ void one(){
         cout<<"2. Saving Account"<<endl;
         cin>>b;
         if(b == '1'){
-                B_account d(1500);
+                string amount;
+                cout<<"Enter The starting Amount Please"<<endl;
+                cin>>amount;
+                if(amount == "0"){
+                                    B_account d;
                 while(a != '5'){
                             cout<<"3. Withdraw Money"<<endl;
                             cout<<"4. Deposit Money"<<endl;
@@ -29,6 +33,26 @@ void one(){
                                 d.deposit(depo);
                             }
                 }
+                }else{
+                                            int amo = stoi(amount);
+                                    B_account d(amo);
+                while(a != '5'){
+                            cout<<"3. Withdraw Money"<<endl;
+                            cout<<"4. Deposit Money"<<endl;
+                            cout<<"5. Quit"<<endl;
+                            cin>>a;
+                            if(a == '3'){
+                                int draw;
+                                cin>>draw;
+                                d.withdraw(draw);
+                            }else if(a == '4'){
+                                int depo;
+                                cin>>depo;
+                                d.deposit(depo);
+                            }
+                }
+                }
+
         }else if(b == '2'){
                 E_account d(1500);
                 while(a != '5'){

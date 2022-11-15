@@ -5,6 +5,26 @@
 
 #endif // BANK_APP_H_INCLUDED
 static int hidden = 1;
+int Count(int&hidden){
+    int sum;
+    string s = "count";
+    //ofstream counti;
+
+                                ifstream find_account(s + ".txt");
+                    string co;
+            getline(find_account, co);
+            sum = stoi(co);
+
+            hidden = sum;
+            /*
+        counti.open(s +".txt");
+
+        counti <<sum<<endl;
+        counti.close();
+        */
+        return hidden;
+
+}
 class Client{
 protected:
     string name,address;int phone_num;
@@ -32,8 +52,19 @@ public:
         user_info.open(id +".txt");
         user_info <<"Basic"<< endl<<ID << endl << name << endl << address << endl << phone_num << endl<<balance;
         user_info.close();
-
+        cout<<"Account with ID FCAI_"<<ID<<" and "<<" Starting amount "<<balance<<" has been created"<<endl;
         hidden++;
+                    int sum;
+    string s = "count";
+    ofstream counti;
+
+
+
+            sum = hidden;
+        counti.open(s +".txt");
+
+        counti <<sum<<endl;
+        counti.close();
     }
     B_account(){
         this->balance =200;
@@ -43,7 +74,19 @@ public:
         user_info.open(id +".txt");
         user_info <<"Basic"<< endl<<ID << endl << name << endl << address << endl << phone_num << endl<<balance;
         user_info.close();
+                cout<<"Account with ID FCAI_"<<ID<<" and "<<" Starting amount "<<balance<<" has been created"<<endl;
         hidden++;
+                            int sum;
+    string s = "count";
+    ofstream counti;
+
+
+
+            sum = hidden;
+        counti.open(s +".txt");
+
+        counti <<sum<<endl;
+        counti.close();
     }
     void withdraw(int draw){
         if(draw > balance){
@@ -73,8 +116,18 @@ public:
         user_info.open(id +".txt");
         user_info <<"Saving_account"<< endl<<ID << endl << name << endl << address << endl << phone_num << endl<<miniBalance;
         user_info.close();
-
         hidden++;
+                            int sum;
+    string s = "count";
+    ofstream counti;
+
+
+
+            sum = hidden;
+        counti.open(s +".txt");
+
+        counti <<sum<<endl;
+        counti.close();
     }
     void withdraw(int draw){
         if(draw > miniBalance){
@@ -115,12 +168,19 @@ public:
         cout<<"4. Deposit Money"<<endl;
         cout<<"5. Quit"<<endl;
         cout<<endl;
+        Count(hidden);
         while(a != '5'){
             cout<<"Please Enter Choice: ";cin>>a;
+
             if(a == '1'){
                 one();
             }else if(a == '2'){
-                for(int i = 1;i<hidden;i++){
+                string s = "count";
+            ifstream find_account(s + ".txt");
+                    string co;
+            getline(find_account, co);
+            int sum = stoi(co);
+                for(int i = 0;i<hidden;i++){
 
                 string id = "FCAI_";
                 id+=to_string(i);
@@ -238,6 +298,17 @@ public:
 
             }
         }
+            int sum;
+    string s = "count";
+    ofstream counti;
+
+
+
+            sum = hidden;
+        counti.open(s +".txt");
+
+        counti <<sum<<endl;
+        counti.close();
 
     }
 };
