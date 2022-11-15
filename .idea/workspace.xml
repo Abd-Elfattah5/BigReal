@@ -12,8 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08446fb1-f451-486e-9d19-7f2c12322010" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banking_Application/FCAI_1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BigReal.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/BigReal.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BigReal.h" beforeDir="false" afterPath="$PROJECT_DIR$/BigReal.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
@@ -66,7 +65,7 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Projects/lecture freestyle" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="BigReal" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BigReal" TARGET_NAME="BigReal" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="BigReal" RUN_TARGET_NAME="BigReal">
@@ -91,6 +90,9 @@
       <workItem from="1667734756125" duration="22000" />
       <workItem from="1668166493557" duration="9131000" />
       <workItem from="1668181427637" duration="7080000" />
+      <workItem from="1668325404133" duration="20000" />
+      <workItem from="1668499786524" duration="9376000" />
+      <workItem from="1668528304953" duration="3360000" />
     </task>
     <servers />
   </component>

@@ -1,7 +1,6 @@
 #include <iostream>
-#include <vector>
 #include "BigReal.h"
-//#include "BigReal.cpp"
+
 
 
 
@@ -14,10 +13,9 @@
 //    return b;};
 
 int main() {
-    BigReal a("-2.99");
-    BigReal b("-2.99");
-    BigReal z ;
-    z = a-b;
-    cout << z;
+    BigReal n1 ("11.9000000000000000000000000000000001");
+    BigReal n2 ("2333333333339.1134322222222292");
+    BigReal n3 = n1 - n2;
+    cout << n3;
     return 0;
 }

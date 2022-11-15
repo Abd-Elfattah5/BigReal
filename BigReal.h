@@ -17,7 +17,7 @@ private:
     string *Total,*fractional_part,*integer_part;
     int* R_sign;
     bool CheckReal();
-    string addition(string first, string second,BigReal& F);
+    BigReal addition(BigReal& first,BigReal& second);
     BigReal substraction(BigReal &first, BigReal &seccond);
 public:
 
